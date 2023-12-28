@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/28 18:39:10 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:14:52 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 			}
 			else if (i == nb - 1)
 			{
-				// fprintf(stderr, "je passe par out et mon i %d\n", i);
+				fprintf(stderr, "je passe par out et mon i!!!!!! %d\n", i);
 				child_process_out(pipes, i, env, new_argv);
-				// fprintf(stderr, "je sors de out go vers la fin du programme\n");
+				fprintf(stderr, "je sors de out go vers la fin du programme\n");
 				exit(0);
 			}
 			else
@@ -103,6 +103,15 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 		fprintf(stderr, "pid dans boucle = %d\n", pid[i]);
 		i++;
 	}
+	close(pipes->pipes[0]);
+	close(pipes->pipes[1]);
+	// i = 0;
+	// while (i < nb)
+	// {
+	// 	close(pipes->pipes[0]);
+	// 	close(pipes->pipes[1]);
+	// 	i++;
+	// }
 	free(pipes);
 	return (0);
 }
