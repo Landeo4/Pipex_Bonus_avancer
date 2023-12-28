@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:19:16 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/20 12:50:26 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/12/28 18:38:59 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_pipes *init_struct(char *argv[])
 
 	i = 0;
 	nb = get_nb_pipes(argv);
-	printf("mon nb dans init_pipe %i\n", nb);
+	nb++;
+	// printf("mon nb dans init_pipe %i\n", nb);
 	pipes = malloc(sizeof(t_pipes) * nb);
 	if (!pipes)
 		return (printf("problem malloc\n"), NULL);
@@ -35,10 +36,10 @@ t_pipes *init_struct(char *argv[])
 	if (!pipes[0].fd1)
 		return (printf("fd1 problem\n"), free(pipes), NULL);
 	tmp = found_max(argv) - 1;
-	pipes[i - 1].fd2 = argv[tmp];
-	if (!pipes[i - 1].fd2)
+	pipes[0].fd2 = argv[tmp];
+	if (!pipes[0].fd2)
 		return (printf("fd2 problem\n"), free(pipes), NULL);
-	printf("je sors de init_struct\n");
+	// printf("pipes[0].fd2 = %s\n", pipes[0].fd2);
 	return (pipes);
 }
 
@@ -69,6 +70,6 @@ int		get_nb_pipes(char **argv)
 		i++;
 	}
 	cpt = tmp - 2;
-	fprintf(stderr, "le nombre de pipe est de %d\n", cpt);
+	// fprintf(stderr, "le nombre de pipe est de %d\n", cpt);
 	return (cpt);
 }

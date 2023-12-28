@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:00:57 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/17 18:19:34 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/12/22 15:24:33 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,67 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argc;
-	ft_pipex(argv, envp);
+	(void)envp;
+	char	**new_argv;
+
+	new_argv = get_new_argv(argv);
+	ft_pipex(argv, envp, new_argv);
+	ft_freedb(new_argv);
 	return (0);
+}
+
+char	**get_new_argv(char *argv[])
+{
+	int		i;
+	int		j;
+	int		c;
+	char	**buf;
+	int		len;
+
+	i = 1;
+	c = 0;
+	buf = malloc(sizeof(char *) * found_max(argv));
+	if (!buf)
+		return (printf("malloc problem at new_argv\n"), NULL);
+	while (argv[i])
+	{
+		j = 0;
+		if (verif_arg_fd(argv, i) == 1)
+		{
+			len = len_fd_tab(argv, i) + 1;
+			buf[c] = malloc(sizeof(char) * len);
+			if (!buf)
+				return (printf("malloc problem at new_argv\n"), NULL);
+			while (argv[i][j])
+			{
+				buf[c][j] = argv[i][j];
+				j++;
+			}
+			buf[c][j] = '\0';
+			c++;
+		}
+		i++;
+	}
+	buf[c] = '\0';
+	return (buf);
+}
+
+int		len_fd_tab(char **str, int i)
+{
+	int		j;
+
+	j = 0;
+	while (str[i][j])
+		j++;
+	return (j);
+}
+
+int	verif_arg_fd(char *argv[], int i)
+{
+	int		fd;
+
+	fd = open(argv[i], O_RDONLY, 0644);
+	if (fd < 0)
+		return (1);
+	return (fd);
 }

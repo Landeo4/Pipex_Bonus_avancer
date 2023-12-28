@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 09:19:12 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/20 17:38:06 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/12/28 15:58:42 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,27 @@ void	ft_do_process(char *envp[], char *cmd)
 	char	**path;
 	char	**cmd_argument;
 
+	fprintf(stderr, "%s\n", cmd);
 	i = 0;
 	cmd_argument = ft_split(cmd, ' ');
 	path = ft_get_path(envp);
-	fprintf(stderr, "avant boucle exec\n");
+	// fprintf(stderr, "je suis dans process voici mon i avant la boucle %d\n", i);
 	while (path[i])
 	{
-		fprintf(stderr, "voici mon i dans la boucle exec%d\n", i);
 		path[i] = str_join_free(path[i], "/");
 		path[i] = str_join_free(path[i], cmd_argument[0]);
+		// fprintf(stderr, "je suis avant execve\n");
+		// fprintf(stderr, "%s\n", path[i]);
 		execve(path[i], cmd_argument, envp);
+		// fprintf(stderr, "je suis apres execve\n");
+		// fprintf(stderr, "voici mon i dans process %d\n", i);
 		i++;
 	}
-	fprintf(stderr, "coucou\n");
+	// fprintf(stderr, "je sors de ma boucle\n");
 	ft_freedb(path);
 	execve(cmd_argument[0], cmd_argument, envp);
 	ft_freedb(cmd_argument);
-	exit(0);
+	return ;
 }
 
 char	**ft_get_path(char **env)

@@ -1,0 +1,10 @@
+i = 2
+total 156
+drwxrwxr-x 2 theo theo   4096 déc.  16 14:29 includes
+drwxrwxr-x 2 theo theo   4096 déc.  16 14:29 libft
+-rw-rw-r-- 1 theo theo   1603 déc.  17 18:19 Makefile
+drwxrwxr-x 4 theo theo   4096 déc.  16 14:29 objs
+-rwxrwxr-x 1 theo theo 127960 déc.  28 18:39 Pipex
+drwxrwxr-x 2 theo theo   4096 déc.  17 18:19 srcs
+-rw-rw-r-- 1 theo theo     18 déc.  20 16:42 test1
+-rwxrwxr-x 1 theo theo      6 déc.  28 18:39 test2

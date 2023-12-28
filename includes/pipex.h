@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:00 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/18 13:29:44 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/12/27 23:24:24 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*ft_strjoin(char *s1, char *s2);
 
 int		ft_parsing(int argc);
 int		ft_verif_error(char *buff, int fd[]);
-int		ft_pipex(char *argv[], char *envp[]);
+int		ft_pipex(char *argv[], char *envp[], char *new_argv[]);
 int		ft_create_fd(char *argv, int flag);
 void	parent_process(int fd4, char *argv[], char *envp[], int *end);
 char	*ft_get_pass(char *argv, char *envp, int i);
@@ -99,6 +99,8 @@ int		get_nb_pipes(char **argv);
 void	child_process_in(t_pipes *pipes, char *env[], char *argv[]);
 void	child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[]);
 void	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[]);
-
+char	**get_new_argv(char *argv[]);
+int		verif_arg_fd(char *argv[], int i);
+int		len_fd_tab(char **str, int i);
 
 #endif

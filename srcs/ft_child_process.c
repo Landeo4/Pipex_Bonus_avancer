@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:58:51 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/20 12:55:05 by tpotilli         ###   ########.fr       */
+/*   Updated: 2023/12/27 23:17:29 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	child_process_in(t_pipes *pipes, char *env[], char *argv[])
 	if (dup2(pipes->pipes[1], STDOUT_FILENO) < 0)
 		return (close(pipes->pipes[1]), perror("dup2"), exit(errno));
 	close(pipes->pipes[1]);
-	ft_do_process(env, argv[2]);
+	ft_do_process(env, argv[0]);
 }
 
 void	child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[])
@@ -52,7 +52,7 @@ void	child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[])
 	if (dup2(pipes[i].pipes[1], STDOUT_FILENO) < 0)
 		return (close(pipes->pipes[1]), perror("dup2"), exit(errno));
 	fprintf(stderr, "je passe le second dup2\n");
-	fprintf(stderr, "%d\n", pipes[i].pipes[1]);
+	fprintf(stderr, "resultat dans middle %d\n", pipes[i].pipes[1]);
 	close(pipes[i - 1].pipes[0]);
 	close(pipes[i].pipes[1]);
 	ft_do_process(env, argv[i]);
@@ -62,20 +62,21 @@ void	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[])
 {
 	int		fd;
 
-	if (dup2(pipes[i].pipes[0], STDIN_FILENO) < 0)
+	if (dup2(pipes[i - 1].pipes[0], STDIN_FILENO) < 0)
 		return (close(pipes->pipes[0]), perror("dup2"), exit(errno));
-	fprintf(stderr, "%d\n", pipes[i].pipes[0]);
+	fprintf(stderr, "voici result dans out %d\n", pipes[i - 1].pipes[0]);
 	close(pipes[i].pipes[0]);
-	printf("pipes[i].fd2 = %s", pipes[i].fd2);
-	fd = ft_create_fd(pipes[i].fd2, O_WRONLY | O_CREAT | O_TRUNC);
+	fprintf(stderr, "pipes[i].fd2 = %s\n", pipes[0].fd2);
+	fd = ft_create_fd(pipes[0].fd2, O_WRONLY | O_CREAT | O_TRUNC);
 	if (fd < 0)
 		return (exit(errno));
 	if (dup2(fd, STDOUT_FILENO) < 0)
 		return (close(pipes->pipes[0]), close(fd), perror("dup2"), exit(errno));
 	close (fd);
-	printf("argv[--i] = %s", pipes->argv[i - 1]);
+	printf("i = %d\n", i);
+	fprintf(stderr, "argv[i] = %s\n", argv[i]);
 	close (pipes->pipes[1]);
-	ft_do_process(env, argv[--i]);
+	ft_do_process(env, argv[i]);
 }
 
 // void	child_process_start(char *argv[], char *envp[], int *end)
