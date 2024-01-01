@@ -1,9 +1,72 @@
-total 152
-drwxrwxr-x 2 theo theo   4096 déc.  16 14:29 includes
-drwxrwxr-x 2 theo theo   4096 déc.  16 14:29 libft
--rw-rw-r-- 1 theo theo   1603 déc.  17 18:19 Makefile
-drwxrwxr-x 4 theo theo   4096 déc.  16 14:29 objs
--rwxrwxr-x 1 theo theo 127960 déc.  28 19:14 Pipex
-drwxrwxr-x 2 theo theo   4096 déc.  17 18:19 srcs
--rw-rw-r-- 1 theo theo     18 déc.  20 16:42 test1
--rwxrwxr-x 1 theo theo      0 déc.  28 19:14 test2
+LC_TIME=fr_FR.UTF-8
+PATH=
+5
+USER=theo
+PATH=
+5
+LANGUAGE=en_US:en
+PATH=
+5
+XDG_SESSION_TYPE=x11
+PATH=
+5
+SHLVL=1
+PATH=
+5
+HOME=/home/theo
+PATH=
+5
+DESKTOP_SESSION=ubuntu
+PATH=
+5
+GIO_LAUNCHED_DESKTOP_FILE=/usr/share/applications/code.desktop
+PATH=
+5
+GTK_MODULES=gail:atk-bridge
+PATH=
+5
+GNOME_SHELL_SESSION_MODE=ubuntu
+PATH=
+5
+LC_MONETARY=fr_FR.UTF-8
+PATH=
+5
+MANAGERPID=1676
+PATH=
+5
+SYSTEMD_EXEC_PID=1923
+PATH=
+5
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+PATH=
+5
+GIO_LAUNCHED_DESKTOP_FILE_PID=2824
+PATH=
+5
+MANDATORY_PATH=/usr/share/gconf/ubuntu.mandatory.path
+PATH=
+5
+LOGNAME=theo
+PATH=
+5
+JOURNAL_STREAM=8:24183
+PATH=
+5
+DEFAULTS_PATH=/usr/share/gconf/ubuntu.default.path
+PATH=
+5
+XDG_SESSION_CLASS=user
+PATH=
+5
+USERNAME=theo
+PATH=
+5
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+PATH=
+5
+WINDOWPATH=2
+PATH=
+5
+PATH=/home/theo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+PATH=
+5

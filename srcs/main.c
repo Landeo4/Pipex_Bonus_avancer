@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:00:57 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/22 15:24:33 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:37:17 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,26 @@ int	main(int argc, char *argv[], char *envp[])
 
 	new_argv = get_new_argv(argv);
 	ft_pipex(argv, envp, new_argv);
-	ft_freedb(new_argv);
+	fprintf(stderr, "mon programme est quasi finis\n");
+	ft_freedb_essaie(new_argv);
+	fprintf(stderr, "mon programme ce finis\n");
 	return (0);
 }
 
+void	ft_freedb_essaie(char *new_argv[])
+{
+	int	i;
+
+	i = 0;
+	while (new_argv[i])
+	{
+		free(new_argv[i]);
+		i++;
+	}
+	free(new_argv);
+}
+
+// corriger les free
 char	**get_new_argv(char *argv[])
 {
 	int		i;
@@ -65,8 +81,8 @@ char	**get_new_argv(char *argv[])
 		{
 			len = len_fd_tab(argv, i) + 1;
 			buf[c] = malloc(sizeof(char) * len);
-			if (!buf)
-				return (printf("malloc problem at new_argv\n"), NULL);
+			if (!buf[c])
+				return (printf("malloc problem at new_argv\n"), free(buf), NULL);
 			while (argv[i][j])
 			{
 				buf[c][j] = argv[i][j];

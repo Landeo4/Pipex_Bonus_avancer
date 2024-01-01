@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:19:16 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/28 18:38:59 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:49:14 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_pipes *init_struct(char *argv[])
 	nb = get_nb_pipes(argv);
 	nb++;
 	// printf("mon nb dans init_pipe %i\n", nb);
-	pipes = malloc(sizeof(t_pipes) * nb);
+	pipes = malloc(sizeof(t_pipes) * (nb));
 	if (!pipes)
 		return (printf("problem malloc\n"), NULL);
 	while (i < nb)
@@ -52,7 +52,8 @@ int	found_max(char **argv)
 		i++;
 	return (i);
 }
-
+//revoir systheme pou rcompter le nombre de pipe
+// faire ne sorte que ca s'adapte pour nb de pipes, de fd, pour le moment simple
 int		get_nb_pipes(char **argv)
 {
 	int		i;
@@ -61,8 +62,11 @@ int		get_nb_pipes(char **argv)
 
 	i = ((cpt = 0));
 	tmp = 0;
-	while (ft_strncmp(argv[i], "./Pipex", 8) != 0)
-		i++;
+	// while (ft_strncmp(argv[i], "./Pipex", 8) != 0)
+	// {
+	// 	printf("%d\n", i);
+	// 	i++;
+	// }
 	i = i + 2;
 	while (i < found_max(argv))
 	{

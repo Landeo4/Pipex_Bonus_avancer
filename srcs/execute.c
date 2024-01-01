@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 09:19:12 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/28 15:58:42 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:23:32 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	ft_do_process(char *envp[], char *cmd)
 	char	**path;
 	char	**cmd_argument;
 
-	fprintf(stderr, "%s\n", cmd);
+	fprintf(stderr, "command = %s\n", cmd);
 	i = 0;
 	cmd_argument = ft_split(cmd, ' ');
 	path = ft_get_path(envp);
-	// fprintf(stderr, "je suis dans process voici mon i avant la boucle %d\n", i);
+	fprintf(stderr, "je suis dans process voici mon i avant la boucle %d\n", i);
 	while (path[i])
 	{
 		path[i] = str_join_free(path[i], "/");
 		path[i] = str_join_free(path[i], cmd_argument[0]);
-		// fprintf(stderr, "je suis avant execve\n");
+		// fprintf(stderr, "je suis avant execve et voici mes donnes\nma commande %s, et path %s\n", cmd, path[i]);
 		// fprintf(stderr, "%s\n", path[i]);
 		execve(path[i], cmd_argument, envp);
 		// fprintf(stderr, "je suis apres execve\n");

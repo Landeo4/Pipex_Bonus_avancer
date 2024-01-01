@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/28 19:14:52 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:37:35 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,13 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 	int		nb;
 	t_pipes	*pipes;
 	pid_t	pid_child;
-
+	// (void)pid_child;
+	// (void)i;
+	// (void)status;
+	// (void)env;
+	// (void)new_argv;
+	// (void)nb;
+	// (void)pid;
 	nb = get_nb_pipes(argv);
 	pipes = NULL;
 	pipes = init_struct(argv);
@@ -72,27 +78,27 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 			fprintf(stderr, "boucle numero %d et nb %d\n", i, nb);
 			if (i == 0)
 			{
-				// fprintf(stderr, "je rentre dans child_process_in\n");
-				child_process_in(pipes, env, new_argv);
-				// fprintf(stderr, "je sors de child_process_in\n");
+				fprintf(stderr, "========JE SUIS DANS IN========\n");
+				child_process_in(pipes, i, env, new_argv);
+				fprintf(stderr, "========JE SORS DE IN========\n");
 			}
 			else if (i == nb - 1)
 			{
-				fprintf(stderr, "je passe par out et mon i!!!!!! %d\n", i);
+				fprintf(stderr, "///JE SUIS DANS OUT ET VOICI I = %d///\n", i);
 				child_process_out(pipes, i, env, new_argv);
-				fprintf(stderr, "je sors de out go vers la fin du programme\n");
+				fprintf(stderr, "///JE SORS DE OUT ET VOICI I = %d///\n", i);
 				exit(0);
 			}
 			else
 			{
-				// fprintf(stderr, "je passe par middle\n====\n");
+				fprintf(stderr, "--------JE SUIS DANS MIDDLE--------\n");
 				child_process_middle(pipes, i, env, new_argv);
-				// fprintf(stderr, "je sors de middle\n====\n");
+				fprintf(stderr, "--------JE SORS DE MIDDLE--------");
 			}
 		}
 		i++;
 	}
-	fprintf(stderr, "mon i a la sortie de la boucle %i\n", i);
+	// fprintf(stderr, "mon i a la sortie de la boucle %i\n", i);
 	i = 0;
 	// return (close(pipes->pipes[0]), close(pipes->pipes[1]), free(pipes), 0);
 	while (i < nb)

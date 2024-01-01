@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <theo91.pot@gmail.com>            +#+  +:+       +#+        */
+/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 12:13:44 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/07/26 22:51:04 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:44:42 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
+	printf("%s\n%s\n%ld\n", s1, s2, n);
 	i = 0;
 	if ((!(s1) && !(s2)) || n == 0)
 		return (0);
