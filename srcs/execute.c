@@ -3,38 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 09:19:12 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/01 18:23:32 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/02 05:07:08 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_do_process(char *envp[], char *cmd)
+void	ft_do_process(char *envp[], char *cmd, int id)
 {
 	int		i;
 	char	**path;
 	char	**cmd_argument;
 
-	fprintf(stderr, "command = %s\n", cmd);
+	fprintf(stderr, "command = %s et identifiant %d\n", cmd, id);
 	i = 0;
 	cmd_argument = ft_split(cmd, ' ');
 	path = ft_get_path(envp);
-	fprintf(stderr, "je suis dans process voici mon i avant la boucle %d\n", i);
+	fprintf(stderr, "je suis dans process voici mon identifiant %d et mon i avant la boucle %d\n", id, i);
 	while (path[i])
 	{
 		path[i] = str_join_free(path[i], "/");
 		path[i] = str_join_free(path[i], cmd_argument[0]);
-		// fprintf(stderr, "je suis avant execve et voici mes donnes\nma commande %s, et path %s\n", cmd, path[i]);
-		// fprintf(stderr, "%s\n", path[i]);
+		fprintf(stderr, "je suis avant execve et voici mes donnes\nma commande %s, et path %s\n", cmd, path[i]);
+		// fprintf(stderr, "je suis avant execve (%d)\n", id);
 		execve(path[i], cmd_argument, envp);
-		// fprintf(stderr, "je suis apres execve\n");
-		// fprintf(stderr, "voici mon i dans process %d\n", i);
+		fprintf(stderr, "je suis apres execve (%d)\n", id);
 		i++;
 	}
-	// fprintf(stderr, "je sors de ma boucle\n");
+	fprintf(stderr, "je sors de ma boucle\n");
 	ft_freedb(path);
 	execve(cmd_argument[0], cmd_argument, envp);
 	ft_freedb(cmd_argument);

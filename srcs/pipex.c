@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/01 18:37:35 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/02 05:04:26 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 		return (-1);
 	printf("nb %i\n", nb);
 	i = 0;
-	printf("verification des argument=z=========\n");
+	printf("verification des argument==========\n");
 	while (new_argv[i])
 	{
 		printf("%s\n", new_argv[i]);
@@ -94,11 +94,20 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 				fprintf(stderr, "--------JE SUIS DANS MIDDLE--------\n");
 				child_process_middle(pipes, i, env, new_argv);
 				fprintf(stderr, "--------JE SORS DE MIDDLE--------");
+				printf("truc de ouf\n");
 			}
+		}
+		else
+		{
+			fprintf(stderr, "je suis dans waitpid, go voir si ca stuck\n");
+			pid_child = waitpid(pid[i], &status, 0);
+			if (pid_child == -1)
+				return (printf("problem pid\n"), free(pipes), -1);
+			fprintf(stderr, "pid dans  mon if = %d et je sors\n", pid[i]);
 		}
 		i++;
 	}
-	// fprintf(stderr, "mon i a la sortie de la boucle %i\n", i);
+	fprintf(stderr, "JE SUIS SORTIS DE MA BOUCLE voici mon pid %d\n", pid[i]);
 	i = 0;
 	// return (close(pipes->pipes[0]), close(pipes->pipes[1]), free(pipes), 0);
 	while (i < nb)
@@ -107,10 +116,11 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 		if (pid_child == -1)
 			return (printf("problem pid\n"), free(pipes), -1);
 		fprintf(stderr, "pid dans boucle = %d\n", pid[i]);
+		fprintf(stderr, "i dans ma boucle de pid %d\n", i);
 		i++;
 	}
-	close(pipes->pipes[0]);
-	close(pipes->pipes[1]);
+	close(pipes[0].pipes[0]);
+	close(pipes[0].pipes[1]);
 	// i = 0;
 	// while (i < nb)
 	// {

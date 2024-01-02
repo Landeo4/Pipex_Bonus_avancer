@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:00 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/31 16:22:18 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/02 00:50:15 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		ft_pipex(char *argv[], char *envp[], char *new_argv[]);
 int		ft_create_fd(char *argv, int flag);
 void	parent_process(int fd4, char *argv[], char *envp[], int *end);
 char	*ft_get_pass(char *argv, char *envp, int i);
-void	ft_do_process(char *envp[], char *cmd);
+void	ft_do_process(char *envp[], char *cmd, int i);
 char	**ft_take_line(char **big, char *little);
 void	ft_freedb(char **str);
 void	ft_execute(char	*cmd, char	**env);

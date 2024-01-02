@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 18:19:16 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/01 18:49:14 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/02 01:11:18 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ int		get_nb_pipes(char **argv)
 		i++;
 	}
 	cpt = tmp - 2;
-	// fprintf(stderr, "le nombre de pipe est de %d\n", cpt);
+	fprintf(stderr, "le nombre de pipe est de %d\n", cpt);
 	return (cpt);
 }

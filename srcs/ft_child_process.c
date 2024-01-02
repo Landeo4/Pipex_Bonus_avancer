@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_child_process.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:58:51 by tpotilli          #+#    #+#             */
-/*   Updated: 2023/12/31 17:27:33 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/02 04:54:31 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,30 @@ void	child_process_in(t_pipes *pipes, int i, char *env[], char *argv[])
 	if (dup2(pipes[i].pipes[1], STDOUT_FILENO) < 0)
 		return (close(pipes->pipes[1]), perror("dup2"), exit(errno));
 	close(pipes->pipes[1]);
-	ft_do_process(env, argv[0]);
+	ft_do_process(env, argv[0], i);
 }
 
 void	child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[])
 {
+	close(pipes[i].pipes[0]);
 	fprintf(stderr, "je suis au tout debut de middle\ni = %d\n", i);
 	if (dup2(pipes[i - 1].pipes[0], STDIN_FILENO) < 0)
-		return (close(pipes->pipes[1]), perror("dup2"), exit(errno));
+		return (close(pipes[i - 1].pipes[0]), perror("dup2"), exit(errno));
+	close(pipes[i - 1].pipes[0]);
 	if (dup2(pipes[i].pipes[1], STDOUT_FILENO) < 0)
 		return (close(pipes->pipes[1]), perror("dup2"), exit(errno));
 	fprintf(stderr, "salut\n");
 	fprintf(stderr, "resultat dans middle %d\n", pipes[i].pipes[1]);
-	close(pipes[i - 1].pipes[0]);
 	close(pipes[i].pipes[1]);
-	ft_do_process(env, argv[i]);
+	ft_do_process(env, argv[i], i);
+	fprintf(stderr, "daddads\n");
 }
 
 void	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[])
 {
 	int		fd;
 
+	close(pipes[i].pipes[0]);
 	if (dup2(pipes[i - 1].pipes[0], STDIN_FILENO) < 0)
 		return (close(pipes->pipes[0]), perror("dup2"), exit(errno));
 	fprintf(stderr, "voici result dans out %d\n", pipes[i - 1].pipes[0]);
@@ -76,7 +79,7 @@ void	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[])
 	fprintf(stderr, "argv[i] = %s\n", argv[i]);
 	close(pipes[i - 1].pipes[0]);
 	close(pipes->pipes[1]);
-	ft_do_process(env, argv[i]);
+	ft_do_process(env, argv[i], i);
 }
 
 // void	child_process_start(char *argv[], char *envp[], int *end)
