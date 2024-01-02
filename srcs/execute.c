@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 09:19:12 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/02 05:07:08 by tpotillion       ###   ########.fr       */
+/*   Updated: 2024/01/02 16:08:47 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_do_process(char *envp[], char *cmd, int id)
 	{
 		path[i] = str_join_free(path[i], "/");
 		path[i] = str_join_free(path[i], cmd_argument[0]);
-		fprintf(stderr, "je suis avant execve et voici mes donnes\nma commande %s, et path %s\n", cmd, path[i]);
+		fprintf(stderr, "je suis avant execve ma commande %s, et path %s\n", cmd, path[i]);
 		// fprintf(stderr, "je suis avant execve (%d)\n", id);
 		execve(path[i], cmd_argument, envp);
 		fprintf(stderr, "je suis apres execve (%d)\n", id);

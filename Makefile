@@ -6,7 +6,7 @@
 #    By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 16:41:59 by tpotilli          #+#    #+#              #
-#    Updated: 2023/12/29 17:16:47 by tpotilli         ###   ########.fr        #
+#    Updated: 2024/01/02 15:58:42 by tpotilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRCS	=	srcs/main.c\
 			srcs/pipex.c\
 			srcs/ft_create_and_verify.c\
 			srcs/ft_child_process.c\
-			srcs/ft_parent_process.c\
 			srcs/execute.c\
 			srcs/init_struct.c\
 			libft/ft_split.c\

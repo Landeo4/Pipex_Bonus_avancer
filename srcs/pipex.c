@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/02 05:04:26 by tpotillion       ###   ########.fr       */
+/*   Updated: 2024/01/02 17:39:01 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,19 +97,21 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 				printf("truc de ouf\n");
 			}
 		}
-		else
-		{
-			fprintf(stderr, "je suis dans waitpid, go voir si ca stuck\n");
-			pid_child = waitpid(pid[i], &status, 0);
-			if (pid_child == -1)
-				return (printf("problem pid\n"), free(pipes), -1);
-			fprintf(stderr, "pid dans  mon if = %d et je sors\n", pid[i]);
-		}
+		// else
+		// {
+		// 	fprintf(stderr, "je suis dans waitpid, go voir si ca stuck\n");
+		// 	pid_child = waitpid(pid[i], &status, 0);
+		// 	if (pid_child == -1)
+		// 		return (printf("problem pid\n"), free(pipes), -1);
+		// 	fprintf(stderr, "pid dans  mon if = %d et je sors\n", pid[i]);
+		// }
 		i++;
 	}
 	fprintf(stderr, "JE SUIS SORTIS DE MA BOUCLE voici mon pid %d\n", pid[i]);
 	i = 0;
 	// return (close(pipes->pipes[0]), close(pipes->pipes[1]), free(pipes), 0);
+	close(pipes[0].pipes[0]);
+	close(pipes[0].pipes[1]);
 	while (i < nb)
 	{
 		pid_child = waitpid(pid[i], &status, 0);
@@ -119,8 +121,6 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 		fprintf(stderr, "i dans ma boucle de pid %d\n", i);
 		i++;
 	}
-	close(pipes[0].pipes[0]);
-	close(pipes[0].pipes[1]);
 	// i = 0;
 	// while (i < nb)
 	// {
@@ -128,6 +128,9 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 	// 	close(pipes->pipes[1]);
 	// 	i++;
 	// }
+	fprintf(stderr, "=====WAH WAH WAH TU VA SORTIR LA=====\n");
+	fprintf(stderr, "=====WAH WAH WAH TU VA SORTIR LA=====\n");
+	fprintf(stderr, "=====WAH WAH WAH TU VA SORTIR LA=====\n");
 	free(pipes);
 	return (0);
 }

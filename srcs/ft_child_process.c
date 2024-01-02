@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_child_process.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:58:51 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/02 04:54:31 by tpotillion       ###   ########.fr       */
+/*   Updated: 2024/01/02 19:18:29 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	child_process_in(t_pipes *pipes, int i, char *env[], char *argv[])
 {
 	int	fd;
 
-	close(pipes->pipes[0]);
+	close(pipes[i].pipes[0]);
 	// fprintf(stderr, "pipes[i].fd1 = %s\n", pipes[0].fd1);
 	fd = ft_create_fd(pipes[0].fd1, O_RDONLY); // trouver nom fichier argv[4]
 	if (fd < 0)
@@ -55,7 +55,7 @@ void	child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[])
 		return (close(pipes->pipes[1]), perror("dup2"), exit(errno));
 	fprintf(stderr, "salut\n");
 	fprintf(stderr, "resultat dans middle %d\n", pipes[i].pipes[1]);
-	close(pipes[i].pipes[1]);
+	close(pipes->pipes[1]);
 	ft_do_process(env, argv[i], i);
 	fprintf(stderr, "daddads\n");
 }
@@ -65,8 +65,9 @@ void	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[])
 	int		fd;
 
 	close(pipes[i].pipes[0]);
+	close(pipes[i].pipes[1]);
 	if (dup2(pipes[i - 1].pipes[0], STDIN_FILENO) < 0)
-		return (close(pipes->pipes[0]), perror("dup2"), exit(errno));
+		return (close(pipes[i - 1].pipes[0]), perror("dup2"), exit(errno));
 	fprintf(stderr, "voici result dans out %d\n", pipes[i - 1].pipes[0]);
 	fprintf(stderr, "pipes[i].fd2 = %s\n", pipes[0].fd2);
 	fd = ft_create_fd(pipes[0].fd2, O_WRONLY | O_CREAT | O_TRUNC);
