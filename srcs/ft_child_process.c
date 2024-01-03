@@ -6,7 +6,7 @@
 /*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:58:51 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/03 00:30:34 by tpotillion       ###   ########.fr       */
+/*   Updated: 2024/01/03 02:16:46 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ int	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[])
 	close(pipes->pipes[0]);
 	ft_do_process(env, argv[i], i);
 	return (0);
-}
 
 // void	child_process_start(char *argv[], char *envp[], int *end)
 // {

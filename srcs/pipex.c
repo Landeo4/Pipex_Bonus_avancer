@@ -6,7 +6,7 @@
 /*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/03 00:14:53 by tpotillion       ###   ########.fr       */
+/*   Updated: 2024/01/03 02:16:30 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 		if (pid[i] == 0)
 		{
 			fprintf(stderr, "boucle numero %d et nb %d\n", i, nb);
+			// fprintf(stderr, "LE PID DE %d EST DE %d\n", i, pid[i]);
 			if (i == 0)
 			{
 				fprintf(stderr, "========JE SUIS DANS IN========\n");
