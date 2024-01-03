@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/02 17:39:01 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/03 00:14:53 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,23 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 			if (i == 0)
 			{
 				fprintf(stderr, "========JE SUIS DANS IN========\n");
-				child_process_in(pipes, i, env, new_argv);
+				if (child_process_in(pipes, i, env, new_argv) == -1)
+					return (-1);
 				fprintf(stderr, "========JE SORS DE IN========\n");
 			}
 			else if (i == nb - 1)
 			{
 				fprintf(stderr, "///JE SUIS DANS OUT ET VOICI I = %d///\n", i);
-				child_process_out(pipes, i, env, new_argv);
+				if (child_process_out(pipes, i, env, new_argv) == -1)
+					return (-1);
 				fprintf(stderr, "///JE SORS DE OUT ET VOICI I = %d///\n", i);
 				exit(0);
 			}
 			else
 			{
 				fprintf(stderr, "--------JE SUIS DANS MIDDLE--------\n");
-				child_process_middle(pipes, i, env, new_argv);
+				if (child_process_middle(pipes, i, env, new_argv) == -1)
+					return (-1);
 				fprintf(stderr, "--------JE SORS DE MIDDLE--------");
 				printf("truc de ouf\n");
 			}
@@ -112,6 +115,13 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 	// return (close(pipes->pipes[0]), close(pipes->pipes[1]), free(pipes), 0);
 	close(pipes[0].pipes[0]);
 	close(pipes[0].pipes[1]);
+	// while(i < nb)
+	// {
+	// 	close(pipes[i].pipes[0]);
+	// 	close(pipes[i].pipes[0]);
+	// 	i++;
+	// }
+	// i = 0;
 	while (i < nb)
 	{
 		pid_child = waitpid(pid[i], &status, 0);

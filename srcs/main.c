@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:00:57 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/01 18:37:17 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/03 00:15:15 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	main(int argc, char *argv[], char *envp[])
 	char	**new_argv;
 
 	new_argv = get_new_argv(argv);
-	ft_pipex(argv, envp, new_argv);
+	if (ft_pipex(argv, envp, new_argv) == -1)
+		return (-1);
 	fprintf(stderr, "mon programme est quasi finis\n");
 	ft_freedb_essaie(new_argv);
 	fprintf(stderr, "mon programme ce finis\n");

@@ -6,7 +6,7 @@
 /*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:00 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/02 00:50:15 by tpotillion       ###   ########.fr       */
+/*   Updated: 2024/01/03 00:15:31 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ char	*str_join_free(char *path, char *cmd);
 t_pipes	*init_struct(char *argv[]);
 int		found_max(char **argv);
 int		get_nb_pipes(char **argv);
-void	child_process_in(t_pipes *pipes, int i, char *env[], char *argv[]);
-void	child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[]);
-void	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[]);
+int     child_process_in(t_pipes *pipes, int i, char *env[], char *argv[]);
+int     child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[]);
+int     child_process_out(t_pipes *pipes, int i, char *env[], char *argv[]);
 char	**get_new_argv(char *argv[]);
 int		verif_arg_fd(char *argv[], int i);
 int		len_fd_tab(char **str, int i);
