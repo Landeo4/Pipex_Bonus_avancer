@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/03 15:03:54 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/04 13:56:05 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,6 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 	// return (close(pipes->pipes[0]), close(pipes->pipes[1]), free(pipes), 0);
 	close(pipes[0].pipes[0]);
 	close(pipes[0].pipes[1]);
-	// while(i < nb)
-	// {
-	// 	close(pipes[i].pipes[0]);
-	// 	close(pipes[i].pipes[0]);
-	// 	i++;
-	// }
-	// i = 0;
 	while (i < nb)
 	{
 		pid_child = waitpid(pid[i], &status, 0);
@@ -132,13 +125,6 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 		fprintf(stderr, "i dans ma boucle de pid %d\n", i);
 		i++;
 	}
-	// i = 0;
-	// while (i < nb)
-	// {
-	// 	close(pipes->pipes[0]);
-	// 	close(pipes->pipes[1]);
-	// 	i++;
-	// }
 	fprintf(stderr, "=====WAH WAH WAH TU VA SORTIR LA=====\n");
 	fprintf(stderr, "=====WAH WAH WAH TU VA SORTIR LA=====\n");
 	fprintf(stderr, "=====WAH WAH WAH TU VA SORTIR LA=====\n");
