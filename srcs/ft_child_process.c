@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 15:58:51 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/04 16:26:14 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:32:39 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[])
 	close(pipes[i - 1].pipes[0]);
 	close(pipes[i - 1].pipes[1]);
 	// close(pipes[i].pipes[1]);
-	// close(pipes[i - 1].pipes[1]);
+	// close(pipes[i].pipes[0]);
 	// fprintf(stderr, "second duo2\n");
 	fd = ft_create_fd("test2v", O_WRONLY | O_CREAT | O_TRUNC);
 	if (fd < 0)
@@ -129,8 +129,6 @@ int	child_process_middle(t_pipes *pipes, int i, char *env[], char *argv[])
 	if (dup2(fd, STDOUT_FILENO) < 0)
 		return (close(pipes->pipes[0]), close(fd), perror("dup2"), -1);
 	close(fd);
-	close(pipes[i].pipes[1]);
-	close(pipes[i].pipes[0]);
 	ft_do_process(env, argv[i], i);
 	return (0);
 }
@@ -145,6 +143,13 @@ int	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[])
 		return (close(pipes[i - 1].pipes[0]), perror("dup2"), -1);
 	close(pipes[i - 1].pipes[0]);
 	close(pipes[i - 1].pipes[1]);
+	close(pipes[i].pipes[0]);
+	close(pipes[i].pipes[1]);
+	if (i > 1)
+	{
+		close(pipes[i - 2].pipes[0]);
+		close(pipes[i - 2].pipes[1]);
+	}
 	fprintf(stderr, "voici result dans out %d\n", pipes[i - 1].pipes[0]);
 	fprintf(stderr, "pipes[i].fd2 = %s\n", pipes[0].fd2);
 	fd = ft_create_fd(pipes[0].fd2, O_WRONLY | O_CREAT | O_TRUNC);
@@ -153,8 +158,6 @@ int	child_process_out(t_pipes *pipes, int i, char *env[], char *argv[])
 	if (dup2(fd, STDOUT_FILENO) < 0)
 		return (close(pipes->pipes[0]), close(fd), perror("dup2"), -1);
 	close(fd);
-	close(pipes[i].pipes[0]);
-	close(pipes[i].pipes[1]);
 	fprintf(stderr, "i = %d\n", i);
 	fprintf(stderr, "argv[i] = %s\n", argv[i]);
 	ft_do_process(env, argv[i], i);
