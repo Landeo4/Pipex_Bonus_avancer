@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/05 12:56:03 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:33:18 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 	i = 0;
 	if (pid[i] > 0)
 		parent_process(pipes, i, env, new_argv);
+	close(pipes->pipes[1]);
+	close(pipes->pipes[0]);
 	// close(pipes[0].pipes[0]);
 	// close(pipes[0].pipes[1]);
 	// close(pipes[1].pipes[1]);
@@ -153,7 +155,7 @@ void	parent_process(t_pipes *pipes, int i, char *env[], char *argv[])
 	(void)env;
 	(void)argv;
 
-	while (j < 3)
+	while (j < 2)
 	{
 		close(pipes[j].pipes[0]);
 		close(pipes[j].pipes[1]);
