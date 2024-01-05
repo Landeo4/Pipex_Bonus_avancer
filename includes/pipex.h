@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:00 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/03 00:15:31 by tpotillion       ###   ########.fr       */
+/*   Updated: 2024/01/05 10:04:38 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int		ft_parsing(int argc);
 int		ft_verif_error(char *buff, int fd[]);
 int		ft_pipex(char *argv[], char *envp[], char *new_argv[]);
 int		ft_create_fd(char *argv, int flag);
-void	parent_process(int fd4, char *argv[], char *envp[], int *end);
 char	*ft_get_pass(char *argv, char *envp, int i);
 void	ft_do_process(char *envp[], char *cmd, int i);
 char	**ft_take_line(char **big, char *little);
@@ -104,5 +103,7 @@ int		verif_arg_fd(char *argv[], int i);
 int		len_fd_tab(char **str, int i);
 
 void	ft_freedb_essaie(char *new_argv[]);
+void	parent_process(t_pipes *pipes, int i, char *env[], char *argv[]);
+
 
 #endif

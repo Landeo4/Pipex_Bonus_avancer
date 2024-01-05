@@ -6,7 +6,7 @@
 /*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 09:28:48 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/04 16:07:12 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/05 12:56:03 by tpotilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,24 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 		i++;
 	}
 	fprintf(stderr, "JE SUIS SORTIS DE MA BOUCLE voici mon pid %d\n", pid[i]);
-	i = 0;
 	// return (close(pipes->pipes[0]), close(pipes->pipes[1]), free(pipes), 0);
+	// while (i < 2)
+	// {
+	// 	close(pipes[i].pipes[0]);
+	// 	close(pipes[i].pipes[1]);
+	// 	i++;
+	// }
 	close(pipes[0].pipes[0]);
 	close(pipes[0].pipes[1]);
+	i = 0;
+	if (pid[i] > 0)
+		parent_process(pipes, i, env, new_argv);
+	// close(pipes[0].pipes[0]);
+	// close(pipes[0].pipes[1]);
+	// close(pipes[1].pipes[1]);
+	// close(pipes[1].pipes[0]);
+	// close(pipes[2].pipes[1]);
+	// close(pipes[2].pipes[0]);
 	while (i < nb)
 	{
 		pid_child = waitpid(pid[i], &status, 0);
@@ -130,6 +144,21 @@ int	ft_pipex(char *argv[], char *env[], char *new_argv[])
 	fprintf(stderr, "=====WAH WAH WAH TU VA SORTIR LA=====\n");
 	free(pipes);
 	return (0);
+}
+
+void	parent_process(t_pipes *pipes, int i, char *env[], char *argv[])
+{
+	int j = 0;
+	(void)i;
+	(void)env;
+	(void)argv;
+
+	while (j < 3)
+	{
+		close(pipes[j].pipes[0]);
+		close(pipes[j].pipes[1]);
+		j++;
+	}
 }
 
 // int	ft_pipex(char *argv[], char *envp[])
