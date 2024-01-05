@@ -1,1 +1,15 @@
-14
+final_gnl
+includes
+libft
+main.c
+Makefile
+objs
+output.txt
+Pipex
+pipex_nv_essaie.c
+readline.supp
+sortie.txt
+srcs
+test1
+test2
+test2v

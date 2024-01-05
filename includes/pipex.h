@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:39:00 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/01/05 10:04:38 by tpotilli         ###   ########.fr       */
+/*   Updated: 2024/01/05 20:12:46 by tpotillion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,17 @@ int		len_fd_tab(char **str, int i);
 
 void	ft_freedb_essaie(char *new_argv[]);
 void	parent_process(t_pipes *pipes, int i, char *env[], char *argv[]);
+int     ft_pipex_nv(char *argv[], char *env[], char *new_argv[]);
 
 
+
+int     openfile (char *filename, int mode);
+char	*getPath (char *cmd, char **env);
+void	exec (char *cmd, char **env);
+void	redir (char *cmd, char **env, int fdin);
+
+char	*path_join (char *path, char *bin);
+int	str_ncmp (char *str1, char *str2, int n);
+int	str_ichr (char *str, char c);
+char	*str_ndup (char *str, unsigned int n);
 #endif

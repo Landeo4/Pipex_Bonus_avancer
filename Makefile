@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tpotilli <tpotilli@student.42.fr>          +#+  +:+       +#+         #
+#    By: tpotillion <tpotillion@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/10 16:41:59 by tpotilli          #+#    #+#              #
-#    Updated: 2024/01/02 15:58:42 by tpotilli         ###   ########.fr        #
+#    Updated: 2024/01/05 20:07:58 by tpotillion       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	Pipex
 
 OBJS_PATH	= objs/
 
-SRCS	=	srcs/main.c\
+SRCS	=	main.c\
 			srcs/pipex.c\
 			srcs/ft_create_and_verify.c\
 			srcs/ft_child_process.c\
